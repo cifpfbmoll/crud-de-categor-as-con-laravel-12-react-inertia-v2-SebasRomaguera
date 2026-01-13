@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Product extends Model
+class Category extends Model
 {
     /**
      * Los atributos que pueden ser asignados masivamente.
@@ -14,11 +14,9 @@ class Product extends Model
      */
     protected $fillable = [
         'name',
-        'category_id',
         'description',
-        'price',
-        'stock',
-        'status',
+        'color',
+        'active',
     ];
 
     /**
@@ -27,15 +25,14 @@ class Product extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'price' => 'decimal:2',
-        'stock' => 'integer',
+        'active' => 'boolean',
     ];
 
     /**
-     * Relación: Un producto pertenece a una categoría.
+     * Relación: Una categoría tiene muchos productos.
      */
-    public function category(): BelongsTo
+    public function products(): HasMany
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Product::class);
     }
 }

@@ -12,6 +12,8 @@ export interface User {
 export interface Product {
     id: number;
     name: string;
+    category_id: number | null;
+    category?: Category;
     description: string | null;
     price: number;
     stock: number;
@@ -21,10 +23,32 @@ export interface Product {
 }
 
 /**
+ * Tipo para representar una Categoría del CRUD.
+ * Refleja la estructura de la tabla 'categories' en la base de datos.
+ */
+export interface Category {
+    id: number;
+    name: string;
+    description: string | null;
+    color: string | null;
+    active: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+/**
  * Props para las páginas con productos.
  */
 export interface ProductsPageProps extends Record<string, unknown> {
     products: Product[];
+    categories: Category[];
+}
+
+/**
+ * Props para las páginas con categorías.
+ */
+export interface CategoriesPageProps extends Record<string, unknown> {
+    categories: Category[];
 }
 
 export type PageProps<

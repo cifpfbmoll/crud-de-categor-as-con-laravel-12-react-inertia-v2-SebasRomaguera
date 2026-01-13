@@ -70,6 +70,9 @@ export default function ProductTable({ products, onEdit, onDelete }: ProductTabl
                             Nombre
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Categoría
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Descripción
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -94,6 +97,21 @@ export default function ProductTable({ products, onEdit, onDelete }: ProductTabl
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                 {product.name}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {product.category ? (
+                                    <span className="inline-flex items-center space-x-1">
+                                        {product.category.color && (
+                                            <span
+                                                className="w-3 h-3 rounded-full border border-gray-300"
+                                                style={{ backgroundColor: product.category.color }}
+                                            />
+                                        )}
+                                        <span>{product.category.name}</span>
+                                    </span>
+                                ) : (
+                                    <span className="text-gray-400">Sin categoría</span>
+                                )}
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
                                 {product.description || '-'}

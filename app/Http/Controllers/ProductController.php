@@ -17,7 +17,10 @@ class ProductController extends Controller
     public function index(): Response
     {
         return Inertia::render('Products/Index', [
-            'products' => Product::orderBy('created_at', 'desc')->get(),
+            'products' => Product::with('category')
+                ->orderBy('created_at', 'desc')
+                ->get(),
+            'categories' => \App\Models\Category::orderBy('name', 'asc')->get(),
         ]);
     }
 
@@ -29,6 +32,7 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'category_id' => 'nullable|exists:categories,id',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
@@ -36,6 +40,7 @@ class ProductController extends Controller
         ]);
 
         $product = Product::create($validated);
+        $product->load('category');
 
         return response()->json([
             'message' => '¡Producto creado exitosamente!',
@@ -51,6 +56,7 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'category_id' => 'nullable|exists:categories,id',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
@@ -59,6 +65,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product->update($validated);
+        $product->load('category');
 
         return response()->json([
             'message' => '¡Producto actualizado exitosamente!',
