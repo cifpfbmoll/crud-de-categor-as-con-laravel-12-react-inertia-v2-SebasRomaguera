@@ -9,6 +9,8 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-4.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
 </p>
 
+## Link Video
+https://github.com/cifpfbmoll/crud-de-categor-as-con-laravel-12-react-inertia-v2-SebasRomaguera/blob/master/VideoCrud.mp4
 ## 📋 Descripción
 
 Aplicación CRUD (Create, Read, Update, Delete) completa desarrollada con el stack moderno de Laravel. Este proyecto sirve como **tutorial y referencia** para desarrolladores Junior que quieren aprender desarrollo full-stack.
